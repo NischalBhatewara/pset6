@@ -41,7 +41,11 @@ int mc = 0;
 bool
 check(const char *word)
 {
-	return inTrie(word);
+	char lower[LENGTH];
+	for (int i = 0; i < strlen(word); ++i)
+		if(word[i] >= 'A' && word[i] <= 'Z') lower[i] = (char) word[i] + 32;
+		else lower[i] = word[i];
+	return inTrie(lower);
 }
 
 
