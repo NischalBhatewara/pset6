@@ -14,7 +14,7 @@
 
 #include "dictionary.h"
 
-#define ALPHABETS 26
+#define ALPHABETS 27
 
 // Trie node
 typedef struct trieNode {
@@ -98,7 +98,6 @@ unload(void)
  * Get new node
  */
 trieNode *getNode() {
-	printf("malloc count: %d\n", ++mc);
 	trieNode *T = (trieNode *) malloc(sizeof(trieNode));
 	T -> isLeaf = false;
 	for (int i = 0; i < ALPHABETS; ++i)
@@ -110,7 +109,7 @@ trieNode *getNode() {
  * returns the pos relative to 'a'
  */
 int getRelativePos(char ch) {
-	return ch % 'a';
+	return (ch == '\'') ? 27 : ch % 'a';
 }
 
 void insertInTrie(char *word) {
@@ -128,7 +127,6 @@ void insertInTrie(char *word) {
 	}
 	node -> isLeaf = true;
 	++dictionarySize;
-	printf("inserted %s\n", word);
 }
 
 bool inTrie(const char *word) {
